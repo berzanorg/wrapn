@@ -1,0 +1,9 @@
+{
+  "name": "wrapn",
+  "version": "0.1.0",
+  "description": "Just the best CSS in JS library",
+  "main": "index.js",
+  "repository": "https://github.com/wrapn/wrapn",
+  "author": "Wrapn Contributors",
+  "license": "MIT"
+}
