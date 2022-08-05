@@ -1,9 +1,21 @@
 {
   "name": "wrapn",
   "version": "0.1.0",
-  "description": "Just the best CSS in JS library",
-  "main": "index.js",
+  "description": "🚄 Create amazing React components using Tailwind. Only 143 bytes.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/**/*"],
   "repository": "https://github.com/wrapn/wrapn",
   "author": "Wrapn Contributors",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "prepublish": "yarn tsc",
+    "publish": "yarn prepublish && yarn publish"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0",
+    "typescript": "^4.7.4"
+  }
 }
