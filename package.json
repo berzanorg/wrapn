@@ -1,7 +1,7 @@
 {
   "name": "wrapn",
-  "version": "0.1.0",
-  "description": "🚄 Create amazing React components using Tailwind. Only 143 bytes.",
+  "version": "0.1.1",
+  "description": "🚄 Create amazing React components using Tailwind. Only 133 bytes.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": ["dist/**/*"],
