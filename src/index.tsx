@@ -29,8 +29,7 @@ type Refs<C extends ElementType> = ComponentPropsWithRef<C>['ref']
 //
 // It assigns (TemplateStringsArray + ' ' + className) to className prop of the component
 
-export function wrapn<C extends ElementType>(Tag: C) {
-    return (tw: TemplateStringsArray) => forwardRef<Refs<C>, Props<C>>(
-        (p, ref) => <Tag ref={ref} {...p} className={tw + ' ' + p.className} />
+export const wrapn = <C extends ElementType>(Tag: C) =>
+    (tw: TemplateStringsArray) => forwardRef<Refs<C>, Props<C>>(
+        (props, ref) => <Tag ref={ref} {...props} className={tw + ' ' + props.className} />
     )
-}
