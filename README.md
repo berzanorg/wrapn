@@ -1,6 +1,6 @@
 # wrapn
-🚄 Create amazing React components using Tailwind, only 133 bytes.
-- Minified version is only 133 bytes. Proof: `import a,{forwardRef as b}from"react";export const wrapn=c=>d=>b((b,e)=>a.createElement(c,{ref:e,...b,className:d+" "+b.className}))`
+🚄 Create amazing React components using Tailwind, only 136 bytes.
+- Minified version is only 136 bytes. Proof: `import a,{forwardRef as b}from"react";export const wrapn=c=>d=>b((b,e)=>a.createElement(c,{ref:e,...b,className:d+" "+b.className||""}))`
 
 ```jsx
 import { wrapn } from 'wrapn'
