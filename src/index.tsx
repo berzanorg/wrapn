@@ -31,5 +31,5 @@ type Refs<C extends ElementType> = ComponentPropsWithRef<C>['ref']
 
 export const wrapn = <C extends ElementType>(Tag: C) =>
     (tw: TemplateStringsArray) => forwardRef<Refs<C>, Props<C>>(
-        (props, ref) => <Tag ref={ref} {...props} className={tw + ' ' + props.className} />
+        (props, ref) => <Tag ref={ref} {...props} className={tw + ' ' + props.className || ''} />
     )
