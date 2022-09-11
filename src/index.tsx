@@ -1,35 +1,44 @@
-import React, { ComponentPropsWithRef, ElementType, forwardRef } from "react"
-
-// Props is the type for the component props
-
-type Props<C extends ElementType> =
-    JSX.IntrinsicAttributes &
-    JSX.LibraryManagedAttributes<C, { className?: string } & Omit<ComponentPropsWithRef<C>, 'className'>>
+import React, { DetailedHTMLProps, HTMLAttributes, SVGProps, forwardRef } from "react"
 
 
+// It extends all the keys of `JSX.IntrinsicElements`
+type HTMLTag = keyof JSX.IntrinsicElements
 
-// Refs is the type for ForwardedRef's
-// It returns both a RefObject & a RefCallback
-// So there is a typing error while assigning a RefObject
-// If you know how to solve it, please open a pull request
+// Type of the props of given HTMLTag
+type WProps<C extends HTMLTag> = JSX.IntrinsicElements[C]
 
-type Refs<C extends ElementType> = ComponentPropsWithRef<C>['ref']
+// Type of the ref of given HTMLTag
+type WRef<C extends HTMLTag> =
+    WProps<C> extends DetailedHTMLProps<HTMLAttributes<infer E>, infer E> ? E :
+    WProps<C> extends SVGProps<infer S> ? S : never
 
 
-
-// "wrapn()" function takes any HTML tag as an argument
-// It return another function which takes a TemplateStringsArray argument
-// TemplateStringsArray includes the TailwindCSS classes you passed
-//
-// For example;
-//
-//    const MyButton = wrapn('button')`
-//        bg-sky-400 text-white
-//   `
-//
-// It assigns (TemplateStringsArray + ' ' + className) to className prop of the component
-
-export const wrapn = <C extends ElementType>(Tag: C) =>
-    (tw: TemplateStringsArray) => forwardRef<Refs<C>, Props<C>>(
-        (props, ref) => <Tag ref={ref} {...props} className={tw + ' ' + props.className || ''} />
-    )
+/**
+ * # wrapn
+ * Wrap any HTML Element into a styled component
+ * - The function takes an HTML tag
+ * - Returns another function which takes Tailwind classes
+ * - Returns a component which has Tailwind classes embedded
+ * 
+ * ## Usage
+ * ```jsx
+ * // To get a styled button
+ * <Button>Click Me!</Button>
+ * 
+ * // Do the same
+ * const Button = wrapn('button')`
+ *     h-12 px-6
+ *     text-white
+ *     bg-red-600
+ *     hover:bg-red-500
+ * `
+ * ```
+ * Visit [the repo](https://github.com/wrapn/wrapn).
+ */
+export const wrapn = <T extends HTMLTag>(Tag: T) => {
+    return (tw: TemplateStringsArray) => {
+        return forwardRef<WRef<T>, WProps<T>>(
+            ({ className, ...props }, ref) => <Tag ref={ref} {...props} className={`${tw} ${className || ''}`}/>
+        )
+    }
+}
