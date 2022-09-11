@@ -8,7 +8,7 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "baseUrl": "src",
     "removeComments": true,
     "jsx": "react",
