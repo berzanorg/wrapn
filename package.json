@@ -1,22 +1,37 @@
 {
   "name": "wrapn",
   "version": "0.1.3",
-  "description": "🚄 Create amazing React components using Tailwind. Only 136 bytes.",
-  "main": "lib/index.js",
+  "description": "🚄 Create amazing React components using Tailwind.",
+  "keywords": [
+    "react",
+    "tailwind",
+    "component"
+  ],
+  "license": "MIT",
+  "author": "Wrapn Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wrapn/wrapn"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
-  "repository": "https://github.com/wrapn/wrapn",
-  "author": "Wrapn Contributors",
-  "license": "MIT",
   "scripts": {
-    "build": "yarn tsc",
+    "build": "yarn tsc && yarn rollup -c",
     "upload": "yarn build && yarn publish"
   },
+  "dependencies": {
+    "react": "^17.0.0 || ^18.0.0"
+  },
   "devDependencies": {
-    "@types/react": "^18.0.15",
-    "react": "^18.2.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "rollup": "^2.79.0",
     "typescript": "^4.7.4"
   }
 }
