@@ -19,11 +19,11 @@ type WRef<C extends ElementType> =
 
 
 // Type of the `wrapn` function
-type WrapnFunction = <T extends ElementType>(Tag: T) => WrapnStyleFunction<T>
+type Wrapn = <T extends ElementType>(Tag: T) => WrapnFunction<T>
 
 
 // Type of the `wrapn` style function
-type WrapnStyleFunction<T extends ElementType> = (tw: TemplateStringsArray) => WrapnComponent<T>
+type WrapnFunction<T extends ElementType> = (tw: TemplateStringsArray) => WrapnComponent<T>
 
 
 // Type of a `wrapn` component
@@ -39,20 +39,19 @@ type WrapnComponent<T extends ElementType> = ForwardRefExoticComponent<PropsWith
  * 
  * ## Usage
  * ```jsx
- * // To get a styled button
- * <Button>Click Me!</Button>
- * 
- * // Do the same
+ * // A new wrapn component
  * const Button = wrapn('button')`
  *     h-12 px-6
  *     text-white
  *     bg-red-600
  *     hover:bg-red-500
  * `
+ * // It is ready to use
+ * <Button>Click</Button>
  * ```
  * Visit [the repo](https://github.com/wrapn/wrapn).
  */
-export const wrapn: WrapnFunction = <T extends ElementType>(Tag: T): WrapnStyleFunction<T> => {
+export const wrapn: Wrapn = <T extends ElementType>(Tag: T): WrapnFunction<T> => {
     return (tw: TemplateStringsArray): WrapnComponent<T> => {
         return forwardRef<WRef<T>, WProps<T>>(
             (props, ref) => <Tag ref={ref} {...props} className={`${tw} ${props.className || ''}`}/>
