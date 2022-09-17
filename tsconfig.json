@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "ts",
     "declarationDir": "lib",
-    "removeComments": true,
+    "removeComments": false,
     "jsx": "react",
     "esModuleInterop": true,
     "noImplicitReturns": true,
