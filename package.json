@@ -11,7 +11,7 @@
   "author": "Wrapn Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wrapn/wrapn"
+    "url": "https://github.com/wrapn/wrapn.git"
   },
   "publishConfig": {
     "access": "public"
