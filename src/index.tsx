@@ -111,7 +111,7 @@ type WrapnStyleFunction<T extends WrapnTag> = (tw: TemplateStringsArray) => Wrap
 export const wrapn: WrapnFunction = <T extends WrapnTag>(Tag: T | Wrapn<T>): WrapnStyleFunction<T> => {
     return (tw: TemplateStringsArray): Wrapn<T> => {
         return forwardRef<WrapnRef<T>, WrapnProps<T>>(
-            (props, ref) => <Tag {...{ref,  className: `${tw} ${props.className || ''}`, ...props} as any}/>
+            (props, ref) => <Tag {...{...props, className: `${tw} ${props.className || ''}`, ref} as any}/>
         )
     }
 }
